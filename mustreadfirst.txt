@@ -1,0 +1,4 @@
+ResourceNotFoundError should be removed from storage_helpers.py
+Application settings for the app should be defined from configuration of function-app on azure
+: QueueConnectionString
+: STORAGE_CONTAINER_NAME
