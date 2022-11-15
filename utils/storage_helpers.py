@@ -18,14 +18,10 @@ def download_blob(container_name, blob_name, connection_string):
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
     try:
         if blob_client.exists():
-            downloads_folder = "tmp_files"
-            local_path = downloads_folder + '/' + blob_name
-            if not os.path.exists(downloads_folder):
-                os.makedirs(downloads_folder)
-            with open(local_path, "wb") as f:
-                stream = blob_client.download_blob()
-                f.write(stream.readall())
-            return local_path
+            
+            stream = blob_client.download_blob()
+            content=stream.readall().decode('utf-8')
+            return content
         else:
             logging.error(f"Blob {blob_name} doesn't exist.")
     except Exception as e:
